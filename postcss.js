@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const vars = require('postcss-simple-vars');
+import path from 'path';
+import fs from 'fs';
+import vars from 'postcss-simple-vars';
 
 module.exports = (options = {}) => {
   // Load theme
