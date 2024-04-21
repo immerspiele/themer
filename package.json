@@ -1,6 +1,6 @@
 {
   "name": "@immerspiele/themer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Build your Vite app with different themes",
   "main": "vite.js",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "access": "public"
   },
   "files": [
-    "postcss.cjs",
+    "postcss.js",
     "vite.js"
   ],
   "repository": {
