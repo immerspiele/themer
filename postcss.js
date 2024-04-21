@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import vars from 'postcss-simple-vars';
 
-module.exports = (options = {}) => {
+const plugin = (options = {}) => {
   // Load theme
   const themeName = process.env.THEME || options.themeName;
   const themeDirectory = path.join(process.cwd(), 'themes', `${themeName}`);
@@ -15,4 +15,6 @@ module.exports = (options = {}) => {
   });
 };
 
-module.exports.postcss = true;
+plugin.postcss = true;
+
+export default plugin;
