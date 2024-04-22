@@ -1,0 +1,14 @@
+{
+  "name": "themer-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "vite": "4.3.2"
+  },
+  "scripts": {
+    "theme-1": "THEME_NAME=theme-1 vite dev",
+    "theme-2": "THEME_NAME=theme-2 vite dev"
+  }
+}

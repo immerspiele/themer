@@ -35,13 +35,15 @@ const getAssetUrl = async (
 };
 
 export default function plugin(options = {}) {
+  let manifest;
   let theme = options.themeName || process.env.THEME;
   let config;
+  let variablesExports = '';
 
   return {
     name: 'vite-themer-plugin',
 
-    configResolved(resolvedConfig) {
+    async configResolved(resolvedConfig) {
       config = resolvedConfig;
 
       const env = loadEnv(config.mode, config.root, '');
@@ -49,18 +51,26 @@ export default function plugin(options = {}) {
       if (!theme && env.THEME) {
         theme = env.THEME;
       }
+
+      // Load theme manifest
+      const themeDirectory = path.join(process.cwd(), 'themes', `${theme}`);
+      const themeManifestPath = path.join(themeDirectory, 'index.json');
+      const manifestContent = await readFile(themeManifestPath, 'utf8');
+
+      manifest = JSON.parse(manifestContent);
+      const variables = manifest.variables = manifest.variables || {};
+
+      // Generate variable exports
+      for (const key in variables) {
+        const value = variables[key];
+        variablesExports += `export const ${key} = ${JSON.stringify(value)};\n`;
+      }
     },
 
     async load(id) {
       if (id === RESOLVED_THEME_VARIABLES) {
-        // Load theme
-        const themeName = process.env.THEME || options.themeName;
-        const themeDirectory = path.join(process.cwd(), 'themes', `${themeName}`);
-        const themeManifestPath = path.join(themeDirectory, 'index.json');
-        const manifestContent = await readFile(themeManifestPath, 'utf8');
-        const manifest = JSON.parse(manifestContent);
-
-        return `export default ${JSON.stringify(manifest.variables)}`;
+        // Load theme variables
+        return variablesExports;
       }
 
       if (id.startsWith(RESOLVED_ID_PREFIX) === false) {

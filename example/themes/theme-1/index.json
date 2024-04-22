@@ -1,0 +1,8 @@
+{
+  "variables": {
+    "message": "Hello from theme 1"
+  },
+  "styles": {
+    "backgroundColor": "blue"
+  }
+}

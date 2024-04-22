@@ -17,8 +17,10 @@
     "url": "https://github.com/immerspiele/themer.git"
   },
   "peerDependencies": {
-    "vite": "^4.3.2",
-    "postcss-simple-vars": "^7.0.1",
-    "postcss": "^7.0.2"
+    "postcss": "^7.0.2",
+    "vite": "^4.3.2"
+  },
+  "dependencies": {
+    "postcss-simple-vars": "7.0.1"
   }
 }
