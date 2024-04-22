@@ -9,10 +9,9 @@ const plugin = (options = {}) => {
   const themeManifestPath = path.join(themeDirectory, 'index.json');
   const manifestContent = fs.readFileSync(themeManifestPath, 'utf8');
   const manifest = JSON.parse(manifestContent);
+  const styles = manifest.styles || {};
 
-  return vars({
-    variables: manifest.variables || {},
-  });
+  return vars({ variables: styles });
 };
 
 plugin.postcss = true;
