@@ -42,6 +42,7 @@ export default function plugin(options = {}) {
 
   return {
     name: 'vite-themer-plugin',
+    enforce: 'pre',
 
     async configResolved(resolvedConfig) {
       config = resolvedConfig;
