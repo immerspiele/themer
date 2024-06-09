@@ -45,8 +45,9 @@ export default function plugin(options = {}) {
     name: 'vite-themer-plugin',
     enforce: 'pre',
 
-    transformIndexHtml(html, ctx) {
-      return ejs.render(html, manifest.variables);
+    transformIndexHtml: {
+      order: 'pre',
+      handler: (html) => ejs.render(html, manifest.variables),
     },
 
     async configResolved(resolvedConfig) {

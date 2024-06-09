@@ -1,5 +1,6 @@
 {
   "variables": {
+    "name": "theme-1",
     "title": "Theme 1 title",
     "message": "Hello from theme 1"
   },
