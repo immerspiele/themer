@@ -1,6 +1,7 @@
 import path from 'path';
 import { readFile } from 'fs/promises';
 import { loadEnv } from 'vite';
+import ejs from 'ejs';
 
 const THEME_ID_PREFIX = 'theme/';
 const RESOLVED_ID_PREFIX = '\0__themer';
@@ -43,6 +44,10 @@ export default function plugin(options = {}) {
   return {
     name: 'vite-themer-plugin',
     enforce: 'pre',
+
+    transformIndexHtml(html, ctx) {
+      return ejs.render(html, manifest.variables);
+    },
 
     async configResolved(resolvedConfig) {
       config = resolvedConfig;

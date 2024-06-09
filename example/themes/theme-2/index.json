@@ -1,5 +1,6 @@
 {
   "variables": {
+    "title": "Theme 2 title",
     "message": "Hello from theme 2"
   },
   "styles": {
